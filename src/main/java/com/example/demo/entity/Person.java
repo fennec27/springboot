@@ -7,14 +7,16 @@ import java.util.List;
 
 @Entity
 @Data
-public class Book {
+public class Person {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    private String title;
+    private String firstName;
 
-    @ManyToMany(mappedBy = "books")
-    private List<Author> authors;
+    private String lastName;
+
+    @OneToMany(mappedBy = "person")
+    private List<Address> addresses;
 }
