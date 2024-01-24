@@ -13,7 +13,9 @@ public class Author {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    private String title;
+    private String firstName;
+
+    private String lastName;
 
     @ManyToMany
     @JoinTable( name = "author_book",
