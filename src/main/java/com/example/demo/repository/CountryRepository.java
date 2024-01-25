@@ -11,10 +11,10 @@ import java.util.List;
 @Repository
 public interface CountryRepository extends JpaRepository<Country, Long> {
 
-    @Query("select country from Country country where country.capital.name = :capitalName")
+    @Query("select cou from Country cou where cou.capital.name = :capitalName")
     List<Country> getCountriesByCapitalNameJpa(@Param("capitalName") String capitalName);
 
-    @Query( value = "SELECT cou.* FROM country as cou JOIN capital as cap ON cou.capital_id = cap.id WHERE cap.name = :capitalName",
+    @Query(value = "SELECT cou.* FROM country as cou JOIN capital as cap ON cou.capital_id = cap.id WHERE cap.name = :capitalName",
             nativeQuery = true)
     List<Country> getCountriesByCapitalNameSql(@Param("capitalName") String capitalName);
 
