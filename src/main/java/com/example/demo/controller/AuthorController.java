@@ -1,7 +1,7 @@
 package com.example.demo.controller;
 
-import com.example.demo.entity.Book;
-import com.example.demo.service.BookService;
+import com.example.demo.entity.Author;
+import com.example.demo.service.AuthorService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -11,26 +11,26 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("book")
-public class BookController {
+@RequestMapping("author")
+public class AuthorController {
 
-    private final BookService bookService;
+    private final AuthorService authorService;
 
-    public BookController(BookService bookService) {
-        this.bookService = bookService;
+    public AuthorController(AuthorService authorService) {
+        this.authorService = authorService;
     }
 
     @PostMapping(value = "", consumes =  "application/json", produces = "application/json")
-    public Book create(@RequestBody Book book) {
-        return bookService.create(book);
+    public Author create(@RequestBody Author author) {
+        return authorService.create(author);
     }
 
     @GetMapping(value = "{id}", produces = "application/json")
-    public Book getOne(@PathVariable Long id) {
-        Optional<Book> book = bookService.getOne(id);
+    public Author getOne(@PathVariable Long id) {
+        Optional<Author> author = authorService.getOne(id);
 
-        if(book.isPresent()) {
-            return book.get();
+        if(author.isPresent()) {
+            return author.get();
         } else {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         }
@@ -38,7 +38,7 @@ public class BookController {
 
   @DeleteMapping(value = "{id}", produces = "application/json")
   public ResponseEntity<Void> destroy(@PathVariable Long id) {
-        Boolean result = bookService.destroy(id);
+        Boolean result = authorService.destroy(id);
 
         if(result) {
             return ResponseEntity.noContent().build();
@@ -48,7 +48,7 @@ public class BookController {
     }
 
     @GetMapping(value = "", produces = "application/json")
-    public List<Book> getAll() {
-        return bookService.getAll();
+    public List<Author> getAll() {
+        return authorService.getAll();
     }
 }
