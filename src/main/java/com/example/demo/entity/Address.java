@@ -3,18 +3,19 @@ package com.example.demo.entity;
 import jakarta.persistence.*;
 import lombok.Data;
 
-import java.util.List;
-
 @Entity
 @Data
-public class Book {
+public class Address {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    private String title;
+    private String street;
 
-    @ManyToMany(mappedBy = "books")
-    private List<Author> authors;
+    private String city;
+
+    @ManyToOne
+    @JoinColumn(name="person_id")
+    private Person person;
 }

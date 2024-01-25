@@ -2,19 +2,19 @@ package com.example.demo.service;
 
 import com.example.demo.entity.Book;
 import com.example.demo.repository.BookRepository;
+import jakarta.transaction.Transactional;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
 @Service
+@Transactional
+@AllArgsConstructor
 public class BookService {
 
     private final BookRepository bookRepository;
-
-    public BookService(BookRepository bookRepository) {
-        this.bookRepository = bookRepository;
-    }
 
     public Book create(Book book) {
         return bookRepository.save(book);
