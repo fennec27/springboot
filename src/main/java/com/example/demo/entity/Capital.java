@@ -1,5 +1,6 @@
 package com.example.demo.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -16,5 +17,6 @@ public class Capital {
     private Integer population;
 
     @OneToOne(mappedBy = "capital")
+    @JsonIgnore
     private Country country;
 }
