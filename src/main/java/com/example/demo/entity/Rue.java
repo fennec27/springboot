@@ -10,7 +10,7 @@ import java.util.List;
 @Entity
 @Getter
 @Setter
-public class Capital {
+public class Rue {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -18,12 +18,10 @@ public class Capital {
 
     private String name;
 
-    private Integer population;
+    private Integer number;
 
-    @OneToOne(mappedBy = "capital")
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name="capital_id")
     @JsonIgnore
-    private Country country;
-
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "capital")
-    private List<Rue> rue;
+    private Capital capital;
 }
