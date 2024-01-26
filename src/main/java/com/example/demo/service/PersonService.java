@@ -67,6 +67,16 @@ public class PersonService
         return null;
     }
 
+    public Optional<Person> AddAddresses(Long id, List<Address> addresses){
+        Optional<Person> p = personRepository.findById(id);
+        if (p.isEmpty() || addresses.isEmpty()) {
+            return Optional.empty();
+        }
+        Person person = p.get();
+        addresses.forEach(a -> a.setPerson(person));
 
+        person.getAddresses().addAll(addresses);
+        return Optional.of(personRepository.save(person));
+    }
 
 }

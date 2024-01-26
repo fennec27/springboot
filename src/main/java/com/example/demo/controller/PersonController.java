@@ -100,4 +100,15 @@ public class PersonController {
         }
     }
 
+    @PostMapping(value="{id}/addresses", consumes = "application/json", produces = "application/json")
+    public Person AddAdresses(@PathVariable Long id, @RequestBody List<Address> addresses){
+        Optional<Person> p = personService.AddAddresses(id, addresses);
+        if (p.isPresent()) {
+            return p.get();
+        } else {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        }
+    }
+
+
 }

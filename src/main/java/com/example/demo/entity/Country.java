@@ -17,7 +17,7 @@ public class Country {
 
     private Integer population;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "capital_id")
     private Capital capital;
 }
