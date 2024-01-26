@@ -1,5 +1,6 @@
 package com.example.demo.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -19,5 +20,6 @@ public class Address {
 
     @ManyToOne
     @JoinColumn(name="person_id")
+    @JsonIgnore
     private Person person;
 }

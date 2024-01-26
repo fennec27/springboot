@@ -19,6 +19,6 @@ public class Person {
 
     private String lastName;
 
-    @OneToMany(mappedBy = "person")
+    @OneToMany(mappedBy = "person", cascade = CascadeType.ALL)
     private List<Address> addresses;
 }
